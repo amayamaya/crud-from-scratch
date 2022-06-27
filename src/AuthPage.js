@@ -21,7 +21,7 @@ export default function AuthPage({ setUser }) {
     <div>
       <h3>Secret is Sacred</h3>
       <h1 className="error">{error}</h1>
-      <form>
+      <form onSubmit={handleSignUpSubmit}>
         <p>Sign Up!</p>
         <label>
           email
