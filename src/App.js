@@ -22,10 +22,10 @@ function App() {
               <Link to="/create">Add New Treasures</Link>
             </li>
             <li>
-              <Link to="treasure/1">Update Treasure</Link>
+              <Link to="/treasures/1">Update Treasure</Link>
             </li>
             <li>
-              <Link to="treasure">Treasure Chest</Link>
+              <Link to="/treasures">Treasure Chest</Link>
             </li>
           </ul>
         </nav>
@@ -33,6 +33,15 @@ function App() {
         <Switch>
           <Route exact path="/">
             {!user ? <AuthPage setUser={setUser} /> : <Redirect to="/treasure" />}
+          </Route>
+          <Route exact path="/treasures/:id">
+            <UpdatePage />
+          </Route>
+          <Route exact path="/treasures">
+            {user ? <ListPage /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/create">
+            <CreatePage />
           </Route>
         </Switch>
       </div>
