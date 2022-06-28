@@ -20,6 +20,7 @@ export default function AuthPage({ setUser }) {
   return (
     <div>
       <h3>Secret is Sacred</h3>
+      <h5>Making Space for Important Things</h5>
       <h1 className="error">{error}</h1>
       <form onSubmit={handleSignUpSubmit}>
         <p>Sign Up!</p>
