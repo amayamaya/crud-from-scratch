@@ -1,7 +1,19 @@
 import { client } from './client';
 
-export async function signUp(email, password) {
-  const { user, error } = await client.auth.signUp({
+export async function getTreasures() {
+  const { data, error } = await client.from('treasure').select('*');
+
+  return data;
+}
+
+export async function getTreasureById(id) {
+  const { data, error } = await client.from('treasure').select('*').match({ id }).single();
+
+  return data;
+}
+
+export async function signIn(email, password) {
+  const { user, error } = await client.auth.signIn({
     email: email,
     password: password,
   });
@@ -14,8 +26,8 @@ export async function signUp(email, password) {
   }
 }
 
-export async function signIn(email, password) {
-  const { user, error } = await client.auth.signIn({
+export async function signUp(email, password) {
+  const { user, error } = await client.auth.signUp({
     email: email,
     password: password,
   });
