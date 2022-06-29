@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { getTreasureById, updateTreasure } from './services/fetch-utils';
+import { getTreasureById, updateTreasure, deleteTreasure } from './services/fetch-utils';
 
 export default function UpdatePage() {
   const { push } = useHistory();
@@ -21,6 +21,12 @@ export default function UpdatePage() {
     }
     doFetch();
   }, [id]);
+
+  async function handleDeleteTreasure() {
+    await deleteTreasure(id);
+
+    push('/treasures');
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -65,7 +71,9 @@ export default function UpdatePage() {
         </label>
         <button>Update Treasure</button>
       </form>
-      <button>Delete Treasure</button>
+      <button onClick={handleDeleteTreasure} className="delete-button">
+        Delete Treasure
+      </button>
     </div>
   );
 }
