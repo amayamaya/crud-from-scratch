@@ -2,7 +2,7 @@ import { client } from './client';
 
 export async function createTreasure(treasure) {
   const { data } = await client.from('treasure').insert(treasure).single();
-  console.log(treasure);
+  //   console.log(treasure);
   return data;
 }
 
@@ -13,7 +13,7 @@ export async function deleteTreasure(id) {
 }
 
 export async function updateTreasure(treasure, id) {
-  console.log(treasure, id);
+  //   console.log(treasure, id);
   const { data } = await client.from('treasure').update(treasure).match({ id: id }).single();
 
   return data;
@@ -21,7 +21,7 @@ export async function updateTreasure(treasure, id) {
 
 export async function getTreasures() {
   const { data } = await client.from('treasure').select('*');
-  console.log(data);
+  //   console.log(data);
   return data;
 }
 
@@ -38,7 +38,7 @@ export async function signIn(email, password) {
   });
 
   if (error) {
-    console.error(error);
+    // console.error(error);
     throw error;
   } else {
     return user;
@@ -52,7 +52,7 @@ export async function signUp(email, password) {
   });
 
   if (error) {
-    console.error(error);
+    // console.error(error);
     throw error;
   } else {
     return user;
