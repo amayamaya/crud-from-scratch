@@ -1,5 +1,9 @@
 import { client } from './client';
 
+export async function logout() {
+  const { error } = await client.auth.signOut();
+}
+
 export async function createTreasure(treasure) {
   const { data } = await client.from('treasure').insert(treasure).single();
   //   console.log(treasure);

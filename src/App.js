@@ -5,11 +5,18 @@ import ListPage from './ListPage';
 import CreatePage from './CreatePage';
 import UpdatePage from './UpdatePage';
 import { client } from './services/client';
+import { logout } from './services/fetch-utils';
 
 import './App.css';
 
 function App() {
   const [user, setUser] = useState(client.auth.user());
+
+  async function handleLogoutClick() {
+    await logout();
+    setUser('');
+  }
+
   return (
     <Router>
       <div>
@@ -22,11 +29,9 @@ function App() {
               <Link to="/create">Add New Treasures</Link>
             </li>
             <li>
-              <Link to="/treasures/1">Update Treasure</Link>
-            </li>
-            <li>
               <Link to="/treasures">Treasure Chest</Link>
             </li>
+            <li>{user && <button onClick={handleLogoutClick}>Logout</button>}</li>
           </ul>
         </nav>
 
