@@ -2,6 +2,7 @@ import { client } from './client';
 
 export async function logout() {
   const { error } = await client.auth.signOut();
+  return error;
 }
 
 export async function createTreasure(treasure) {
