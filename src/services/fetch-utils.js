@@ -1,5 +1,11 @@
 import { client } from './client';
 
+export async function updateTreasure(treasure, id) {
+  const { data, error } = await client.from('treasure').update(treasure).match({ id: id }).single();
+
+  return data;
+}
+
 export async function getTreasures() {
   const { data, error } = await client.from('treasure').select('*');
 
