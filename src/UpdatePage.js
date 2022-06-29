@@ -19,32 +19,53 @@ export default function UpdatePage() {
       setSource(treasure.source);
       setRating(treasure.rating);
     }
-
     doFetch();
   }, [id]);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    await updateTreasure(
+      {
+        name: name,
+        description: description,
+        source: source,
+        rating: rating,
+      },
+      id
+    );
+
+    setName('');
+    setDescription('');
+    setSource('');
+    setRating('');
+
+    push('/treasures');
+  }
 
   return (
     <div>
       <h3>Update Your Treasure Specs</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input />
+          <input onChange={(e) => setName(e.target.value)} value={name} />
         </label>
         <label>
           Description:
-          <input />
+          <input onChange={(e) => setDescription(e.target.value)} value={description} />
         </label>
         <label>
           Source:
-          <input />
+          <input onChange={(e) => setSource(e.target.value)} value={source} />
         </label>
         <label>
           Rating:
-          <input type="number" />
+          <input onChange={(e) => setRating(e.target.value)} value={rating} type="number" />
         </label>
+        <button>Update Treasure</button>
       </form>
+      <button>Delete Treasure</button>
     </div>
   );
 }

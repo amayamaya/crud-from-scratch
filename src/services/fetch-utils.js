@@ -1,7 +1,14 @@
 import { client } from './client';
 
+export async function deleteTreasure(id) {
+  const { data, error } = await client.from('treasure').delete().match({ id: id }).single();
+
+  return data;
+}
+
 export async function updateTreasure(treasure, id) {
-  const { data, error } = await client.from('treasure').update(treasure).match({ id: id }).single();
+  console.log(treasure, id);
+  const { data } = await client.from('treasure').update(treasure).match({ id: id }).single();
 
   return data;
 }
