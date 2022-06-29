@@ -15,6 +15,7 @@ export default function ListPage() {
   }, []);
   return (
     <div>
+      <p>test</p>
       {treasures.map((treasure, i) => (
         <Treasure treasure={treasure} key={treasure.name + treasure.from + i} />
       ))}

@@ -1,7 +1,13 @@
 import { client } from './client';
 
+export async function createTreasure(treasure) {
+  const { data } = await client.from('treasure').insert(treasure).single();
+  console.log(treasure);
+  return data;
+}
+
 export async function deleteTreasure(id) {
-  const { data, error } = await client.from('treasure').delete().match({ id: id }).single();
+  const { data } = await client.from('treasure').delete().match({ id: id }).single();
 
   return data;
 }
@@ -14,13 +20,13 @@ export async function updateTreasure(treasure, id) {
 }
 
 export async function getTreasures() {
-  const { data, error } = await client.from('treasure').select('*');
-
+  const { data } = await client.from('treasure').select('*');
+  console.log(data);
   return data;
 }
 
 export async function getTreasureById(id) {
-  const { data, error } = await client.from('treasure').select('*').match({ id }).single();
+  const { data } = await client.from('treasure').select('*').match({ id }).single();
 
   return data;
 }

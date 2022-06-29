@@ -8,9 +8,27 @@ export default function CreatePage() {
   const [description, setDescription] = useState('');
   const [source, setSource] = useState('');
   const [rating, setRating] = useState('');
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    await createTreasure({
+      name: name,
+      description: description,
+      source: source,
+      rating: rating,
+    });
+
+    setName('');
+    setDescription('');
+    setSource('');
+    setRating('');
+
+    push('/treasures');
+  }
   return (
     <div>
-      <h3>Create Treasure Specs</h3>
+      <h3>Store Something Important</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
